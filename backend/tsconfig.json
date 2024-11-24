@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES6", "ESNext"],
+    "module": "commonjs",
+    "outDir": "./build",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2016",
+    "typeRoots": ["./node_modules/@types", "@types"],
+    "paths": {
+      "@config/*": ["src/config/*"],
+      "@controller/*": ["src/modules/controller/*"],
+      "@database/*": ["src/database/*"],
+      "@erro/*": ["src/error/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@model/*": ["src/modules/model/*"],
+      "@routes/*": ["src/routes/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@service/*": ["src/modules/service/*"],
+      "@test/*": ["src/test/*"],
+      "@utils/*": ["src/utils/*"],
+    },
+    "strictPropertyInitialization": false
+  }
+}

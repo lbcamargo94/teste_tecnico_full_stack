@@ -1,0 +1,72 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup --out-dir build src/*.ts/ src/**/*.ts",
+    "commit": "git add . & git status && git commit -m",
+    "commit:count": "git rev-list --all --count",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --env-file .env src/server.ts",
+    "eslint": "eslint 'src/**/*.ts'",
+    "prettier": "prettier 'src/**/*.ts'",
+    "prettier:check": "prettier --check . '!**/*.ts'",
+    "prettier:write": "prettier --write . '!**/*.ts'",
+    "prisma:deploy": "npx prisma migrate deploy",
+    "prisma:migrate": "npx prisma migrate dev --name",
+    "prisma:reset": "npx prisma migrate reset",
+    "prisma:seed": "prisma db push && node prisma/seeds/index.ts",
+    "prisma:studio": "npx prisma studio",
+    "test": "jest",
+    "update:all": "npm outdated & npm update & npx npm-check-updates -u & npm install"
+  },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register prisma/seeds/index.ts"
+  },
+  "keywords": [],
+  "author": "lbcamargo94",
+  "license": "ISC",
+  "description": "a concept application where the user can request a trip in a private car from point A to point B. They can choose between some driver options and prices and confirm the trip. He can then also list the history of the trips made.",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.9.3",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "tslib": "^2.8.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.15.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@prisma/extension-accelerate": "^1.2.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^8.0.0",
+    "zod": "^3.23.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
