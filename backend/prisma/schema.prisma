@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id    Int    @id @default(autoincrement())
+  email String @db.VarChar()
+  name  String @db.VarChar()
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  rides      Ride[]
+  assessment Assessment[]
+
+  @@map("customers")
+}
+
+model Driver {
+  id               Int    @id @default(autoincrement())
+  description      String @db.VarChar()
+  minimum_distance Int    @db.Integer()
+  name             String @db.VarChar()
+  rating           Float
+  vehicle          String @db.VarChar()
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  rides      Ride[]
+  assessment Assessment[]
+
+  @@map("drivers")
+}
+
+model Assessment {
+  id              Int    @id @default(autoincrement())
+  comment         String @db.VarChar()
+  customer_id     Int    @db.Integer()
+  driver_id       Int    @db.Integer()
+  evaluation_rate Int    @db.Integer()
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  drivers   Driver   @relation(fields: [driver_id], references: [id])
+  customers Customer @relation(fields: [customer_id], references: [id])
+
+  @@map("assessments")
+}
+
+model Ride {
+  id          Int    @id @default(autoincrement())
+  customer_id Int    @db.Integer()
+  destination String @db.VarChar()
+  distance    Float
+  driver_id   Int    @db.Integer()
+  duration    String @db.VarChar()
+  origin      String @db.VarChar()
+  price       Float
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  drivers   Driver   @relation(fields: [driver_id], references: [id])
+  customers Customer @relation(fields: [customer_id], references: [id])
+
+  @@map("rides")
+}
